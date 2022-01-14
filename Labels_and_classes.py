@@ -5,13 +5,15 @@ def generate_classes():
     ReWhe = np.zeros(4)
     # Thrus = np.zeros(8)
 
-    # Compute total number of combinations for a maximum of two failures per system (combination = 1 + len + sum(i) for i=1:len-1)
-    GyroComb = 1 + Gyros.__len__()
-    for sumval in range(Gyros.__len__()):
-        GyroComb = GyroComb + sumval
-    ReWheComb = 1 + ReWhe.__len__()
-    for sumval in range(ReWhe.__len__()):
-        ReWheComb = ReWheComb + sumval
+    # Compute total number of combinations for a maximum of two failures per system (combination =exactly 0 + exactly 1  +exactly 2 failed)
+    GyroLen=Gyros.__len__()
+    ReWheLen=ReWhe.__len__()
+    GyroComb = 1 + GyroLen + (GyroLen*(GyroLen-1))/2; # 1(no failure)+n(anyone failed)+n*(n-1)/2(Nc2 any two failed)
+    #for sumval in range(Gyros.__len__()):
+        #GyroComb = GyroComb + sumval
+    ReWheComb = 1 + ReWheLen + (ReWheLen*(ReWheLen-1))/2; # 1(no failure)+n(anyone failed)+n*(n-1)/2(Nc2 any two failed)
+    #for sumval in range(ReWhe.__len__():
+        #ReWheComb = ReWheComb + sumval
     # ThrusComb = 1 + Thrus.__len__()
     # for sumval in range(Thrus.__len__()):
     #     ThrusComb = ThrusComb + sumval
